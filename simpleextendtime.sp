@@ -5,7 +5,7 @@
 #include <sdktools>
 
 #define PLUGIN_AUTHOR "Ruto"
-#define PLUGIN_VERSION "0.01"
+#define PLUGIN_VERSION "0.02"
 
 public Plugin myinfo = 
 {
@@ -28,7 +28,7 @@ public Action Command_ExtendTime(int client, int args)
 {
     if (args < 1) 
     {
-        PrintToConsole(client, "Usage: sm_extendtime <length,max:9999> or sm_extendtime 0 for infinite until RTV");
+        PrintToConsole(client, "Usage: sm_extendtime <length>");
         return Plugin_Handled;
     }
 
@@ -37,11 +37,11 @@ public Action Command_ExtendTime(int client, int args)
     int length = 0;
     if ((length = StringToInt(sarg)) == 0) 
     {
-        PrintToConsole(client, "Usage: sm_extendtime <length,max:9999> or sm_extendtime 0 for infinity until RTV");
+        PrintToConsole(client, "Usage: sm_extendtime <length>");
         return Plugin_Handled;
     }
 
-    g_timelimit.SetInt(length, false, true);
+    g_timelimit.SetInt(g_timelimit.IntValue+length, false, true);
 
     return Plugin_Handled;
 }
