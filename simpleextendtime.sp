@@ -40,6 +40,12 @@ public Action Command_ExtendTime(int client, int args)
         PrintToConsole(client, "Usage: sm_extendtime <length>");
         return Plugin_Handled;
     }
+    
+    if (length <= 1)
+    {
+    	PrintToConsole(client, "Please enter a length greater than 0");
+	return Plugin_Handled;
+    }
 
     g_timelimit.SetInt(g_timelimit.IntValue+length, false, true);
 
